@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ComicTile from './ComicTile.js';
 import HeroTile from './HeroTile.js';
+import SeriesTile from './SeriesTile.js';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 class ResultsContainer extends Component {
@@ -17,14 +18,6 @@ class ResultsContainer extends Component {
         const dataArray = this.props.resultsProp.data || [];
         const comicsArray = dataArray.results || [];
 
-
-        // let tileType = null;
-        // if (this.props.searchType === 'characters') {
-        //     tileType = <HeroTile />;
-        // } else {
-        //     tileType = <ComicTile />;
-        // }
-
         return (
             <div>
                 <Grid>
@@ -32,7 +25,11 @@ class ResultsContainer extends Component {
                         {
                             this.props.searchType === 'characters' ?
                                 comicsArray.map(item => <Col md={4} key={item.id}><HeroTile key={item.id} hero={item} /></Col>)
-                                : comicsArray.map(item => <Col md={4} key={item.id}><ComicTile key={item.id} comic={item} /></Col>)
+                                : this.props.searchType === 'series' ?
+                                    comicsArray.map(item => <Col md={4} key={item.id}><SeriesTile key={item.id} series={item} /></Col>)
+                                    :
+                                    comicsArray.map(item => <Col md={4} key={item.id}><ComicTile key={item.id} comic={item} /></Col>)
+
                         }
                     </Row>
                 </Grid>
