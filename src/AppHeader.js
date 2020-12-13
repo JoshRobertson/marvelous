@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import logo from './MarvelLogo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./MarvelLogo.svg";
+import "./App.css";
 
 class AppHeader extends Component {
   render() {
